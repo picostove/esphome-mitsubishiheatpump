@@ -78,6 +78,9 @@ class MitsubishiHeatPump : public esphome::PollingComponent, public esphome::cli
         // Handle a change in status as detected by the HeatPump library.
         void hpStatusChanged(heatpumpStatus currentStatus);
 
+        // Return the current compressor frequency.
+        int compressor_frequency();
+
         // Set up the component, initializing the HeatPump object.
         void setup() override;
 
@@ -159,6 +162,7 @@ class MitsubishiHeatPump : public esphome::PollingComponent, public esphome::cli
         int rx_pin_ = -1;
         int tx_pin_ = -1;
         bool operating_ = false;
+        int compressor_frequency_ = 0;
 
         std::optional<std::chrono::duration<long long, std::ratio<60>>> remote_operating_timeout_;
         std::optional<std::chrono::duration<long long, std::ratio<60>>> remote_idle_timeout_;
